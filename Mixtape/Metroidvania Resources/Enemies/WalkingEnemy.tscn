@@ -4,10 +4,10 @@
 [ext_resource path="res://Metroidvania Resources/Enemies/WalkingEnemy.png" type="Texture" id=2]
 [ext_resource path="res://Metroidvania Resources/Enemies/WalkingEnemy.gd" type="Script" id=3]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2, 6 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "Walk"
 length = 0.4
 loop = true
@@ -25,7 +25,8 @@ tracks/0/keys = {
 }
 
 [node name="WalkingEnemy" instance=ExtResource( 1 )]
-collision_layer = 16
+collision_layer = 0
+collision_mask = 2
 script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
@@ -33,37 +34,35 @@ position = Vector2( 0, -9 )
 texture = ExtResource( 2 )
 flip_h = true
 hframes = 2
-frame = 1
 
 [node name="Collider" parent="." index="1"]
-position = Vector2( 0, -6 )
-shape = SubResource( 5 )
+position = Vector2( 0, -7 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" parent="." index="2"]
 playback_speed = 0.5
-anims/Walk = SubResource( 6 )
+anims/Walk = SubResource( 2 )
 
 [node name="FloorLeft" type="RayCast2D" parent="." index="3"]
 position = Vector2( -2, 0 )
 enabled = true
 cast_to = Vector2( 0, 6 )
-collide_with_areas = true
-collide_with_bodies = false
+collision_mask = 2
 
 [node name="FloorRight" type="RayCast2D" parent="." index="4"]
-position = Vector2( 2, 0 )
+position = Vector2( 3, 0 )
 enabled = true
 cast_to = Vector2( 0, 6 )
-collide_with_areas = true
+collision_mask = 2
 
 [node name="WallRight" type="RayCast2D" parent="." index="5"]
 position = Vector2( 2, -8 )
 enabled = true
 cast_to = Vector2( 6, 0 )
-collide_with_areas = true
+collision_mask = 2
 
 [node name="WallLeft" type="RayCast2D" parent="." index="6"]
 position = Vector2( -2, -8 )
 enabled = true
 cast_to = Vector2( -6, 0 )
-collide_with_areas = true
+collision_mask = 2
